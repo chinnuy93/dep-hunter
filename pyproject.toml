@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dep-hunter"
+version = "1.0.0"
+description = "Passive dependency-confusion discovery for authorized security research"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Dep-Hunter maintainers" }]
+keywords = ["security", "bug-bounty", "supply-chain", "dependency-confusion"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Information Technology",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Security",
+]
+dependencies = [
+  "aiohttp>=3.9,<4",
+  "PyYAML>=6.0,<7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2,<2",
+  "pytest>=8.0,<9",
+  "pytest-asyncio>=0.23,<1",
+]
+
+[project.urls]
+Homepage = "https://github.com/chinnuy93/dep-hunter"
+Repository = "https://github.com/chinnuy93/dep-hunter"
+Issues = "https://github.com/chinnuy93/dep-hunter/issues"
+Changelog = "https://github.com/chinnuy93/dep-hunter/blob/main/CHANGELOG.md"
+Security = "https://github.com/chinnuy93/dep-hunter/security"
+
+[project.scripts]
+dep-hunter = "dephunter.cli.main:main"
+
+[tool.setuptools.packages.find]
+include = ["dephunter*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]

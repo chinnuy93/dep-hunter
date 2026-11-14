@@ -1,0 +1,31 @@
+name: Feature request
+description: Suggest an improvement that preserves the passive, authorized-use design
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What authorized workflow is currently difficult or impossible?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety impact
+      description: Explain how the proposal remains passive/read-only or what authorization gate it needs
+    validations:
+      required: true
+  - type: checkboxes
+    id: invariants
+    attributes:
+      label: Design invariants
+      options:
+        - label: The request does not add package publishing, installation, execution, callbacks, or target-side exploitation.
+          required: true

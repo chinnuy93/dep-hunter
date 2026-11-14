@@ -1,0 +1,71 @@
+# Dep-Hunter scope file (example)
+#
+# Only scan targets for which you have explicit, current authorization.
+# The program and authorization fields are mandatory and are copied into every
+# report. Keep this file under version control with your engagement notes.
+
+program: "Example Bug Bounty Program"
+authorization: "HackerOne program #0000 policy, authorized on 2026-01-01; web + public repo review permitted, no exploitation."
+contact: "security-research@example.org"
+
+# Only used by tests or authorized internal labs. Private/loopback DNS targets
+# are rejected unless this is true.
+allow_private_hosts: false
+
+web:
+  - url: "https://www.example.com"
+    include_subdomains: true
+  - url: "https://app.example.com"
+    include_subdomains: false
+
+crawl:
+  max_depth: 3
+  max_urls: 500
+  concurrency: 6
+  requests_per_second: 2
+  respect_robots: true
+  source_maps: true
+  probe_manifests: false
+  exclude_paths:
+    - "/logout"
+    - "/account/delete"
+
+github:
+  orgs:
+    - "example-org"
+  repos:
+    - "example-org/frontend"
+  include_history: true
+  history_commits_per_file: 20
+  max_repos: 50
+  max_files_per_repo: 200
+  include_forks: false
+  include_archived: true
+
+gitlab:
+  projects: []
+  include_history: false
+  max_files_per_project: 200
+
+registries:
+  enabled: [npm, pypi, maven, nuget, go, rubygems, packagist, crates, docker]
+  query_limit: 400
+  cache_ttl_hours: 24
+  requests_per_second: 5
+
+analysis:
+  org_patterns:
+    - "example"
+    - "examplecorp"
+  internal_keywords:
+    - "internal"
+    - "private"
+    - "corp"
+    - "platform"
+    - "shared"
+    - "libs"
+    - "infra"
+    - "backend"
+    - "service"
+  # CANDIDATE, HIGH_CONFIDENCE, or CONFIRMED.
+  min_classification: "CANDIDATE"

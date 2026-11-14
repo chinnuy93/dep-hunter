@@ -1,0 +1,55 @@
+name: Bug report
+description: Report a reproducible bug in Dep-Hunter
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not report security vulnerabilities here. Use the repository's Security tab and read SECURITY.md.
+
+        Remove or replace all target domains, authorization files, tokens, and generated reports with synthetic examples.
+  - type: input
+    id: version
+    attributes:
+      label: Dep-Hunter version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, WSL version if applicable, Python version
+      placeholder: "Ubuntu 24.04 WSL2, Python 3.11.9"
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and synthetic scope
+      description: Include the command and a redacted or synthetic scope file
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the traceback or error output, with secrets removed
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed real target data, tokens, personal data, and generated reports.
+          required: true
+        - label: This is not a security vulnerability in Dep-Hunter.
+          required: true
